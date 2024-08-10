@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝚖𝚞𝚜𝚒𝚌</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .audio-player {
+            background: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .audio-player header {
+            background: #ADD8E6;
+            color: #8A2BE2;
+            padding: 10px;
+            font-size: 17px;
+        }
+
+        .audio-player audio {
+            width: 100%;
+            outline: none;
+        }
+
+        .audio-player .controls {
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .audio-player button {
+            background: #FFDAB9;
+            border: none;
+            color: #D2691E;
+            padding: 10px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .audio-player button:hover {
+            background: #F0F8FF;
+        }
+
+        .audio-player .progress-container {
+            background: #ddd;
+            border-radius: 5px;
+            margin: 10px;
+            position: relative;
+            height: 5px;
+        }
+
+        .audio-player .progress {
+            background: #00FFFF;
+            height: 100%;
+            width: 0;
+            border-radius: 5px;
+        }
+      
+      
+    </style>
+</head>
+<body>
+
+<div class="audio-player">
+    <header>𝚂𝚊𝚔𝚝𝚎𝚗𝚊𝚗𝚎 II</header>
+    <audio id="audio" src="lagu.mp3"></audio>
+    <div class="controls">
+        <button id="play-pause">Play</button>
+        <button id="stop">Stop</button>
+    </div>
+    <div class="progress-container">
+        <div class="progress" id="progress"></div>
+    </div>
+</div>
+
+<script>
+    const audio = document.getElementById('audio');
+    const playPauseBtn = document.getElementById('play-pause');
+    const stopBtn = document.getElementById('stop');
+    const progress = document.getElementById('progress');
+
+    playPauseBtn.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play();
+            playPauseBtn.textContent = 'Pause';
+        } else {
+            audio.pause();
+            playPauseBtn.textContent = 'Play';
+        }
+    });
+
+    stopBtn.addEventListener('click', () => {
+        audio.pause();
+        audio.currentTime = 0;
+        playPauseBtn.textContent = 'Play';
+    });
+
+    audio.addEventListener('timeupdate', () => {
+        const progressPercent = (audio.currentTime / audio.duration) * 100;
+        progress.style.width = `${progressPercent}%`;
+    });
+</script>
+
+</body>
+</html>
